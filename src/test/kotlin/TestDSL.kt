@@ -4,7 +4,7 @@ import SqlExpressions.insert
 import SqlExpressions.values
 import SqlExpressions.where
 
-class TestHui {
+class TestDSL {
 
     @Test
     fun testsqlReq(){

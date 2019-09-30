@@ -18,31 +18,23 @@ object SqlRequest {
 
     inline fun <reified T> QueryRunner.upd(sql: String) = update(sql)
 
-//    fun ds() {
-//        val ds = PGSimpleDataSource()
-//        ds.setURL(DB_URL)
-//        ds.user = USER
-//        ds.password = PASS
-//
-//        return ds()
-//    }
-
-    fun sqlReq(sql: String) {
-//        val ds = ds()
+    fun dataSource(): PGSimpleDataSource{
         val ds = PGSimpleDataSource()
         ds.setURL(DB_URL)
         ds.user = USER
         ds.password = PASS
+
+        return ds
+    }
+
+    fun sqlReq(sql: String) {
+        val ds = dataSource()
         var runner = QueryRunner(ds)
         val user = runner.findOne<UsersDto>(sql)
     }
 
     fun sqlReqB(sql: String) {
-        val ds = PGSimpleDataSource()
-        ds.setURL(DB_URL)
-        ds.user = USER
-        ds.password = PASS
-
+        val ds = dataSource()
         var runner = QueryRunner(ds)
         val user = runner.upd<UsersDto>(sql)
     }
